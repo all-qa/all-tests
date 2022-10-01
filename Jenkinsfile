@@ -53,6 +53,7 @@ pipeline {
         allure([includeProperties: false, reportBuildPolicy: 'ALWAYS', results: [[path: '**/target/allure-results']]])
     }
     } catch(e) {
+        e.printStackTrace()
         echo "Cannot publish allure reports"
     }
 }
