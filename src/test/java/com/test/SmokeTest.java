@@ -27,15 +27,15 @@ public class SmokeTest extends BaseTest {
 
     @DataProvider
     public Object[][] keywords() {
-        return new Object[][] {
+        return new Object[][]{
                 {
                         "hello world"
                 },
                 {
-                    "java programming language"
+                        "java programming language"
                 },
                 {
-                    "qa automation"
+                        "qa automation"
                 }
         };
 
