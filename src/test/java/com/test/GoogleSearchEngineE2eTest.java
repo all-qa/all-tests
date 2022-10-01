@@ -25,7 +25,7 @@ public class GoogleSearchEngineE2eTest extends BaseE2eTest {
         }
     }
 
-    @DataProvider
+    @DataProvider(parallel = true)
     public Object[][] keywords() {
         return new Object[][]{
                 {
