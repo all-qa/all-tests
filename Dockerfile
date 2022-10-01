@@ -11,6 +11,6 @@ ENV aspectjVersion ${aspectjVersion}
 
 ENTRYPOINT java -cp testng-docker.jar:testng-docker-tests.jar:libs/* \
 -javaagent:"/libs/aspectjweaver-$aspectjVersion.jar" \
--agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=8000 \
+-agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=8000 \
 -Dallure.results.directory=/allure-results \
 org.testng.TestNG "smoke.xml"
