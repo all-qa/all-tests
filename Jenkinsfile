@@ -47,9 +47,12 @@ pipeline {
 
     try {
     stage("Publish reports") {
+        sh 'curl -o allure-2.19.0.tgz -OLs https://repo.maven.apache.org/maven2/io/qameta/allure/allure-commandline/2.19.0/allure-commandline-2.19.0.tgz'
+        sh 'tar -zxvf allure-2.19.0.tgz -C /opt/'
+        sh 'ln -s /opt/allure-2.19.0/bin/allure /usr/bin/allure'
         allure([includeProperties: false, reportBuildPolicy: 'ALWAYS', results: [[path: '**/target/allure-results']]])
     }
     } catch(e) {
-        e.printStackTrace()
+        echo "Cannot publish allure reports"
     }
 }
