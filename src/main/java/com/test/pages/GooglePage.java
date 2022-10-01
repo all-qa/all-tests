@@ -37,19 +37,16 @@ public class GooglePage extends BasePageObject {
             }
         }
         getWebDriverWait().until(ExpectedConditions.visibilityOfElementLocated(By.name("q")));
-        log.info("Opening google page {} in the following browser: {} and {} language", getWebDriver().getCurrentUrl(),capabilities.getBrowserName(), getLanguage());
         return this;
     }
 
     @Step("Closing google page")
     public void closePage() {
         getWebDriver().quit();
-        log.info("Page closed");
     }
 
     @Step("Searching google using keyword {keyword} and prompting for results with RETURN key")
     public GoogleSearchResultsPage googleSearch(String keyword) {
-        log.info("Searching google for {} keyword", keyword);
         WebElement q = getWebDriver().findElement(By.name("q"));
         q.sendKeys(keyword);
         q.sendKeys(Keys.RETURN);

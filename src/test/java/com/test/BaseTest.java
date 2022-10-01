@@ -35,9 +35,10 @@ public class BaseTest implements IHookable {
     private static final ThreadLocal<GooglePage> TEST_PAGE_THREAD_LOCAL = new ThreadLocal<>();
 
     @BeforeMethod
-    @Parameters({"browser", "url"})
-    public void setUp(String browser, String url) {
+    public void setUp() {
         WebDriver remoteWebDriver;
+        String targetUrl = System.getProperty("selenium.target.url");
+        String browser = System.getProperty("selenium.browser");
         try {
             URL seleniumHubUrl = new URL(System.getProperty("selenium.hub.url"));
             switch (browser) {
@@ -67,7 +68,7 @@ public class BaseTest implements IHookable {
         log.info("setting up things for thread: {}", Thread.currentThread().getName());
         WEB_DRIVER_THREAD_LOCAL.set(remoteWebDriver);
         WEB_DRIVER_WAIT_THREAD_LOCAL.set(new WebDriverWait(remoteWebDriver, Duration.ofSeconds(4)));
-        TEST_PAGE_THREAD_LOCAL.set(new GooglePage("en", getWebDriver(), getWebDriverWait(), url));
+        TEST_PAGE_THREAD_LOCAL.set(new GooglePage("en", getWebDriver(), getWebDriverWait(), targetUrl));
     }
 
     @AfterMethod

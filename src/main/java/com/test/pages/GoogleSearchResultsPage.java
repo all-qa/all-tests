@@ -14,7 +14,6 @@ public class GoogleSearchResultsPage extends BasePageObject {
 
     @Step("Getting google search results page title")
     public String getPageTitle() {
-        log.info("Getting search page resuls title");
         return getWebDriver().getTitle();
     }
 }
