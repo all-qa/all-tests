@@ -9,6 +9,8 @@ ADD target/test-classes/smoke.xml smoke.xml
 ARG aspectjVersion
 ENV aspectjVersion ${aspectjVersion}
 
+EXPOSE 8000
+
 ENTRYPOINT java -cp testng-docker.jar:testng-docker-tests.jar:libs/* \
 -javaagent:"/libs/aspectjweaver-$aspectjVersion.jar" \
 -agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=8000 \
