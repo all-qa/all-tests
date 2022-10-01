@@ -93,6 +93,11 @@
                     <argLine>
                         -javaagent:${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar
                     </argLine>
+                    <systemPropertyVariables>
+                        <allure.link.mylink.pattern>https://example.org/mylink/{}</allure.link.mylink.pattern>
+                        <allure.link.issue.pattern>https://example.org/issue/{}</allure.link.issue.pattern>
+                        <allure.link.tms.pattern>https://example.org/tms/{}</allure.link.tms.pattern>
+                    </systemPropertyVariables>
                 </configuration>
                 <executions>
                     <execution>
