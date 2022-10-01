@@ -36,7 +36,6 @@ public class GooglePage extends BasePageObject {
                 break;
             }
         }
-        elements.get(elements.size()-2).click();
         getWebDriverWait().until(ExpectedConditions.visibilityOfElementLocated(By.name("q")));
         log.info("Opening google page {} in the following browser: {} and {} language", getWebDriver().getCurrentUrl(),capabilities.getBrowserName(), getLanguage());
         return this;
