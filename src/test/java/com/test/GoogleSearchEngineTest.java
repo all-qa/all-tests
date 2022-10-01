@@ -8,12 +8,12 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
-@Epic("smoke test epic")
-public class SmokeTest extends BaseTest {
+@Epic("Google search engine")
+public class GoogleSearchEngineTest extends BaseTest {
 
     @Test(dataProvider = "keywords")
-    @Story("smoke test for google")
-    public void testGoogleSearch_smoke(String keyword) {
+    @Story("Google search input")
+    public void testGoogleSearchInputReturnsResult(String keyword) {
         try {
             GooglePage googlePage = getTestPage().openPage();
             GoogleSearchResultsPage googleSearchResultsPage = googlePage.googleSearch(keyword);

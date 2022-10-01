@@ -39,7 +39,7 @@ public class BaseTest implements IHookable {
     public void setUp(String browser, String url) {
         WebDriver remoteWebDriver;
         try {
-            URL seleniumHubUrl = new URL(System.getenv("SELENIUM_HUB_URL"));
+            URL seleniumHubUrl = new URL(System.getProperty("selenium.hub.url"));
             switch (browser) {
                 case "chrome":
                     ChromeOptions chromeOptions = new ChromeOptions();
@@ -60,7 +60,7 @@ public class BaseTest implements IHookable {
             }
         } catch (Exception e) {
             log.error(e.getMessage());
-            log.error(e.getMessage());
+            e.printStackTrace();
             throw new RuntimeException("setup error");
         }
         remoteWebDriver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);

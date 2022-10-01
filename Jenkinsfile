@@ -42,12 +42,9 @@ pipeline {
      }
 
      stage("Building tests") {
-        sh "mvn clean install"
+        sh "mvn clean verify -Dselenium.hub.url=http://selenium-router.selenium-grid.svc.cluster.local:4444"
      }
 
-     stage("Running tests") {
-        sh "docker run -e SELENIUM_HUB_URL=http://selenium-router.selenium-grid.svc.cluster.local:4444 testng-docker:latest"
-     }
     try {
     stage("Publish reports") {
         allure([includeProperties: false, reportBuildPolicy: 'ALWAYS', results: [[path: '**/target/allure-results']]])
