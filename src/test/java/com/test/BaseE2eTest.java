@@ -17,7 +17,6 @@ import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Listeners;
-import org.testng.annotations.Parameters;
 
 import java.io.IOException;
 import java.net.URL;
@@ -28,7 +27,7 @@ import java.util.concurrent.TimeUnit;
         TestOrderRandomizer.class
 })
 @Slf4j
-public class BaseTest implements IHookable {
+public class BaseE2eTest implements IHookable {
 
     private static final ThreadLocal<WebDriver> WEB_DRIVER_THREAD_LOCAL = new ThreadLocal<>();
     private static final ThreadLocal<WebDriverWait> WEB_DRIVER_WAIT_THREAD_LOCAL = new ThreadLocal<>();

@@ -9,7 +9,7 @@ import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
 @Epic("Google search engine")
-public class GoogleSearchEngineTest extends BaseTest {
+public class GoogleSearchEngineE2eTest extends BaseE2eTest {
 
     @Test(dataProvider = "keywords")
     @Story("Google search input")
