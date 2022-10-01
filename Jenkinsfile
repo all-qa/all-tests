@@ -42,7 +42,7 @@ pipeline {
      }
 
      stage("Building tests") {
-        sh "mvn clean verify -Dselenium.hub.url=http://selenium-router.selenium-grid.svc.cluster.local:4444"
+        sh "mvn clean verify -Dselenium.hub.url=http://selenium-router.selenium-grid.svc.cluster.local:4444 -Dmaven.failsafe.debug"
      }
 
     try {
