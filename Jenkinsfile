@@ -30,23 +30,18 @@ pipeline {
     }
  }
 
- def debugInfo() {
-       sh "mvn --version"
-       sh "java -version"
- }
+def pipelineStages() {
 
- def pipelineStages() {
-
-     stage("Checkout Code") {
+     stage("Checkout e2e tests") {
          checkout scm
      }
 
-     stage("Building tests") {
+     stage("Running e2e tests") {
         sh "mvn clean verify -Dselenium.hub.url=http://selenium-router.selenium-grid.svc.cluster.local:4444 -Dselenium.browser=chrome -Dselenium.target.url=https://google.com"
      }
 
     try {
-    stage("Publish reports") {
+    stage("Publishing e2e reports") {
         sh 'curl -o allure-2.19.0.tgz -OLs https://repo.maven.apache.org/maven2/io/qameta/allure/allure-commandline/2.19.0/allure-commandline-2.19.0.tgz'
         sh 'tar -zxvf allure-2.19.0.tgz -C /opt/'
         sh 'ln -s /opt/allure-2.19.0/bin/allure /usr/bin/allure'
