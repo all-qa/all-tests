@@ -8,6 +8,10 @@ pipeline {
         }
     }
 
+    parameters {
+        string(name: 'BROWSER', defaultValue: 'chrome', description: 'Target browser')
+    }
+
     options {
         disableConcurrentBuilds()
         buildDiscarder(logRotator(numToKeepStr: '5', artifactNumToKeepStr: '5'))
@@ -16,9 +20,9 @@ pipeline {
     }
 
     stages {
-        stage("Pipeline") {
+        stage("e2e pipeline") {
             steps {
-                pipelineStages()
+                e2ePipelineStages()
             }
         }
     }
@@ -30,14 +34,14 @@ pipeline {
     }
  }
 
-def pipelineStages() {
+def e2ePipelineStages() {
 
      stage("Checkout e2e tests") {
          checkout scm
      }
 
      stage("Running e2e tests") {
-        sh "mvn clean verify -Dselenium.hub.url=http://selenium-router.selenium-grid.svc.cluster.local:4444 -Dselenium.browser=chrome -Dselenium.target.url=https://google.com"
+        sh "mvn clean verify -Dselenium.hub.url=http://selenium-router.selenium-grid.svc.cluster.local:4444 -Dselenium.browser=${params.BROWSER} -Dselenium.target.url=https://google.com"
      }
 
     try {
