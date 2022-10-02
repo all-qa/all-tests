@@ -13,7 +13,7 @@ pipeline {
     }
 
     environment {
-        MAVEN_OPTS = " -Xms512m -Xmx1024m -XX:MaxPermSize=1024m"
+        MAVEN_OPTS = " -Xms512m -Xmx1024m"
     }
 
     options {
