@@ -22,8 +22,6 @@
         <commons-io.version>2.6</commons-io.version>
         <maven-surefire-plugin.version>3.0.0-M4</maven-surefire-plugin.version>
         <maven-failsafe-plugin.version>3.0.0-M4</maven-failsafe-plugin.version>
-        <allure.results.directory>target/allure-results</allure.results.directory>
-        <allure.report.directory>target/allure-report</allure.report.directory>
     </properties>
 
     <dependencies>
@@ -99,6 +97,7 @@
                         <allure.link.mylink.pattern>https://example.org/mylink/{}</allure.link.mylink.pattern>
                         <allure.link.issue.pattern>https://example.org/issue/{}</allure.link.issue.pattern>
                         <allure.link.tms.pattern>https://example.org/tms/{}</allure.link.tms.pattern>
+                        <allure.results.directory>target/allure-results</allure.results.directory>
                     </systemPropertyVariables>
                 </configuration>
                 <executions>
