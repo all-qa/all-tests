@@ -3,12 +3,13 @@ package com.test;
 import com.test.pages.GooglePage;
 import com.test.pages.GoogleSearchResultsPage;
 import io.qameta.allure.Epic;
+import io.qameta.allure.Feature;
 import io.qameta.allure.Story;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
-@Epic("Google search engine")
+@Feature("Google search engine")
 public class GoogleSearchEngineE2eTest extends BaseE2eTest {
 
     @Test(dataProvider = "keywords")

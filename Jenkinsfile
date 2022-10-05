@@ -45,18 +45,9 @@ def e2ePipelineStages() {
      }
 
      stage("Running e2e tests") {
-        sh "mvn clean verify -Dselenium.hub.url=http://selenium-router.selenium-grid.svc.cluster.local:4444 -Dselenium.browser=${params.BROWSER} -Dselenium.target.url=https://google.com"
+        withAllureUpload(serverId: 'allure-testops', projectId: '1', results: [[path: 'target/allure-results']]) {
+            sh "mvn clean verify -Dselenium.hub.url=http://selenium-router.selenium-grid.svc.cluster.local:4444 -Dselenium.browser=${params.BROWSER} -Dselenium.target.url=https://google.com"
+        }
      }
 
-    try {
-    stage("Publishing e2e reports") {
-        sh 'curl -o allure-2.19.0.tgz -OLs https://repo.maven.apache.org/maven2/io/qameta/allure/allure-commandline/2.19.0/allure-commandline-2.19.0.tgz'
-        sh 'tar -zxvf allure-2.19.0.tgz -C /opt/'
-        sh 'ln -s /opt/allure-2.19.0/bin/allure /usr/bin/allure'
-        allure([includeProperties: false, reportBuildPolicy: 'ALWAYS', results: [[path: '**/target/allure-results']]])
-    }
-    } catch(e) {
-        e.printStackTrace()
-        echo "Cannot publish allure reports"
-    }
 }
