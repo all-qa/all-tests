@@ -45,7 +45,7 @@ def e2ePipelineStages() {
      }
 
      stage("Running e2e tests") {
-        withAllureUpload(serverId: 'allure-testops', projectId: '1', results: [[path: 'target/allure-results']]) {
+        withAllureUpload(serverId: 'allure-testops', projectId: '1', results: [[path: '**/target/allure-results']]) {
             sh "mvn clean verify -Dselenium.hub.url=http://selenium-router.selenium-grid.svc.cluster.local:4444 -Dselenium.browser=${params.BROWSER} -Dselenium.target.url=https://google.com"
         }
      }
