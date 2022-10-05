@@ -22,6 +22,8 @@
         <commons-io.version>2.6</commons-io.version>
         <maven-surefire-plugin.version>3.0.0-M4</maven-surefire-plugin.version>
         <maven-failsafe-plugin.version>3.0.0-M4</maven-failsafe-plugin.version>
+        <allure.results.directory>target/allure-results</allure.results.directory>
+        <allure.report.directory>target/allure-report</allure.report.directory>
     </properties>
 
     <dependencies>
