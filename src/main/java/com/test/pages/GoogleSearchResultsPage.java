@@ -12,7 +12,6 @@ public class GoogleSearchResultsPage extends BasePageObject {
         super(language, webDriver, webDriverWait);
     }
 
-    @Step("Getting google search results page title")
     public String getPageTitle() {
         return getWebDriver().getTitle();
     }

@@ -23,7 +23,6 @@ public class GooglePage extends BasePageObject {
         this.url=url;
     }
 
-    @Step("Opening google page")
     public GooglePage openPage() {
         Capabilities capabilities = ((RemoteWebDriver) getWebDriver()).getCapabilities();
         getWebDriver().get(url);
@@ -40,12 +39,10 @@ public class GooglePage extends BasePageObject {
         return this;
     }
 
-    @Step("Closing google page")
     public void closePage() {
         getWebDriver().quit();
     }
 
-    @Step("Searching google using keyword {keyword} and prompting for results with RETURN key")
     public GoogleSearchResultsPage googleSearch(String keyword) {
         WebElement q = getWebDriver().findElement(By.name("q"));
         q.sendKeys(keyword);
