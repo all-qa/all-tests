@@ -34,7 +34,7 @@ public class GoogleSearchEngineE2eTest extends BaseE2eTest {
     @Test(description = "Google Search Results Second Link Is Not Displayed", dataProvider = "keywords")
     @AllureId("2")
     @Story("Google search input")
-    void testGoogleSearchResultsSecondLinkisNotDisplayed(String keyword) {
+    public void testGoogleSearchResultsSecondLinkIsNotDisplayed(String keyword) {
         SoftAssert softAssert = new SoftAssert();
         step("Opening google page", () -> {
             GooglePage googlePage = getTestPage().openPage();
