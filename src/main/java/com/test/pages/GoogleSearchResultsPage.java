@@ -2,7 +2,9 @@ package com.test.pages;
 
 import io.qameta.allure.Step;
 import lombok.extern.slf4j.Slf4j;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 @Slf4j
@@ -14,5 +16,9 @@ public class GoogleSearchResultsPage extends BasePageObject {
 
     public String getPageTitle() {
         return getWebDriver().getTitle();
+    }
+
+    public WebElement secondLink() {
+        return getWebDriver().findElement(By.cssSelector(""));
     }
 }

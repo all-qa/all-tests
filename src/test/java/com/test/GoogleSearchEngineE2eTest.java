@@ -25,24 +25,29 @@ public class GoogleSearchEngineE2eTest extends BaseE2eTest {
                             softAssert.assertTrue(googleSearchResultsPage.getPageTitle().contains(keyword));
                         });
                     });
-                    step("Closing google page", () -> {
-                        getTestPage().closePage();
-                    });
+                    step("Closing google page", () -> getTestPage().closePage());
             });
 
             softAssert.assertAll();
     }
 
-    @Test(description = "Google Search Results Second Link Unclickable")
+    @Test(description = "Google Search Results Second Link Unclickable", dataProvider = "keywords")
     @AllureId("2")
     @Story("Google search input")
     @Owner("admin")
-    void testGoogleSearchResultsSecondLinkUnclickable() {
-        step("Opening google page");
-        step("Searching google using keyword hello world and prompting for results with RETURN key");
-        step("Getting google search results page title");
-        step("Check second link in results links is unclickable");
-        step("Closing google page");
+    void testGoogleSearchResultsSecondLinkUnclickable(String keyword) {
+        SoftAssert softAssert = new SoftAssert();
+        step("Opening google page", () -> {
+            GooglePage googlePage = getTestPage().openPage();
+            step("Searching google using keyword hello world and prompting for results with RETURN key", () -> {
+                GoogleSearchResultsPage googleSearchResultsPage = googlePage.googleSearch(keyword);
+                step("Check second link in results links is not displayed", () -> {
+                    softAssert.assertFalse(googleSearchResultsPage.secondLink().isDisplayed());
+                });
+            });
+            step("Closing google page", () -> getTestPage().closePage());
+        });
+        softAssert.assertAll();
     }
 
     @DataProvider(parallel = true)
