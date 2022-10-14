@@ -31,11 +31,10 @@ public class GoogleSearchEngineE2eTest extends BaseE2eTest {
             softAssert.assertAll();
     }
 
-    @Test(description = "Google Search Results Second Link Unclickable", dataProvider = "keywords")
+    @Test(description = "Google Search Results Second Link Is Not Displayed", dataProvider = "keywords")
     @AllureId("2")
     @Story("Google search input")
-    @Owner("admin")
-    void testGoogleSearchResultsSecondLinkUnclickable(String keyword) {
+    void testGoogleSearchResultsSecondLinkisNotDisplayed(String keyword) {
         SoftAssert softAssert = new SoftAssert();
         step("Opening google page", () -> {
             GooglePage googlePage = getTestPage().openPage();
