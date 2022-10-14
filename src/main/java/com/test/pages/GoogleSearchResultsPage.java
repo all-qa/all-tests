@@ -19,6 +19,6 @@ public class GoogleSearchResultsPage extends BasePageObject {
     }
 
     public WebElement secondLink() {
-        return getWebDriver().findElement(By.cssSelector(""));
+        return getWebDriver().findElement(By.cssSelector("body"));
     }
 }
