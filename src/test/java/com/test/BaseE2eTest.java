@@ -9,6 +9,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.firefox.FirefoxOptions;
+import org.openqa.selenium.firefox.FirefoxProfile;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.IHookCallBack;
@@ -50,7 +51,9 @@ public class BaseE2eTest implements IHookable {
                     remoteWebDriver = new RemoteWebDriver(seleniumHubUrl, chromeOptions);
                     break;
                 case "firefox":
-                    remoteWebDriver = new RemoteWebDriver(seleniumHubUrl, new FirefoxOptions());
+                    FirefoxOptions firefoxOptions = new FirefoxOptions();
+                    firefoxOptions.setProfile(new FirefoxProfile());
+                    remoteWebDriver = new RemoteWebDriver(seleniumHubUrl, firefoxOptions);
                     break;
                 case "edge":
                     remoteWebDriver = new RemoteWebDriver(seleniumHubUrl, new EdgeOptions());
