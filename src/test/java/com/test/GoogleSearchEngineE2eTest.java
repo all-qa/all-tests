@@ -48,7 +48,7 @@ public class GoogleSearchEngineE2eTest extends BaseE2eTest {
         softAssert.assertAll();
     }
 
-    @Test(description = "Google Search Results Second Link Is Displayed", dataProvider = "keywords")
+    @Test(description = "Random test case", dataProvider = "keywords")
     @AllureId("3")
     @Story("Google search input")
     public void testGoogleSearchResultsSecondLinkIsNotDisplayed2(String keyword) {
