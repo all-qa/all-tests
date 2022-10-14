@@ -25,13 +25,12 @@ public class GoogleSearchEngineE2eTest extends BaseE2eTest {
                             softAssert.assertTrue(googleSearchResultsPage.getPageTitle().contains(keyword));
                         });
                     });
-                    step("Closing google page", () -> getTestPage().closePage());
             });
-
-            softAssert.assertAll();
+        step("Closing google page", () -> getTestPage().closePage());
+        softAssert.assertAll();
     }
 
-    @Test(description = "Google Search Results Second Link Is Not Displayed", dataProvider = "keywords")
+    @Test(description = "Google Search Results Second Link Is Displayed", dataProvider = "keywords")
     @AllureId("2")
     @Story("Google search input")
     public void testGoogleSearchResultsSecondLinkIsNotDisplayed(String keyword) {
@@ -44,12 +43,12 @@ public class GoogleSearchEngineE2eTest extends BaseE2eTest {
                     softAssert.assertFalse(googleSearchResultsPage.secondLink().isDisplayed());
                 });
             });
-            step("Closing google page", () -> getTestPage().closePage());
         });
+        step("Closing google page", () -> getTestPage().closePage());
         softAssert.assertAll();
     }
 
-    @DataProvider(parallel = true)
+    @DataProvider
     public Object[][] keywords() {
         return new Object[][]{
                 {
