@@ -13,7 +13,6 @@ import static io.qameta.allure.Allure.step;
 public class GoogleSearchEngineE2eTest extends BaseE2eTest {
 
     @Test(description = "Search input quote is displayed in title", dataProvider = "keywords")
-    @AllureId("1")
     @Story("Google search input")
     public void testGoogleSearchInputReturnsResult(String keyword) {
         SoftAssert softAssert = new SoftAssert();
@@ -31,7 +30,6 @@ public class GoogleSearchEngineE2eTest extends BaseE2eTest {
     }
 
     @Test(description = "Google Search Results Second Link Is Displayed", dataProvider = "keywords")
-    @AllureId("2")
     @Story("Google search input")
     public void testGoogleSearchResultsSecondLinkIsNotDisplayed(String keyword) {
         SoftAssert softAssert = new SoftAssert();
@@ -49,7 +47,6 @@ public class GoogleSearchEngineE2eTest extends BaseE2eTest {
     }
 
     @Test(description = "Random test case", dataProvider = "keywords")
-    @AllureId("3")
     @Issue("abc-123")
     @Story("Google search input")
     public void testGoogleSearchResultsSecondLinkIsNotDisplayed2(String keyword) {
