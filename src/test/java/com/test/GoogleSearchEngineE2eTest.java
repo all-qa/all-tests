@@ -31,7 +31,7 @@ public class GoogleSearchEngineE2eTest extends BaseE2eTest {
         SoftAssert softAssert = new SoftAssert();
         step("Searching google using keyword hello world and prompting for results with RETURN key", () -> {
             GoogleSearchResultsPage googleSearchResultsPage = getTestPage().googleSearch(keyword);
-            step("Check second link in results links is not displayed", () -> {
+            step("Check second link in results links is displayed", () -> {
                 softAssert.assertTrue(googleSearchResultsPage.secondLink().isDisplayed());
             });
         });
