@@ -10,6 +10,7 @@ import org.testng.asserts.SoftAssert;
 import static io.qameta.allure.Allure.step;
 
 @Feature("Google search engine")
+@Issue("GS-1")
 public class GoogleSearchEngineE2eTest extends BaseE2eTest {
 
     @Test(description = "Search input quote is displayed in title", dataProvider = "keywords")
