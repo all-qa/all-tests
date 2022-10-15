@@ -25,8 +25,8 @@ public class GoogleSearchEngineE2eTest extends BaseE2eTest {
                         });
                     });
             });
-        step("Closing google page", () -> getTestPage().closePage());
         softAssert.assertAll();
+        step("Closing google page", () -> getTestPage().closePage());
     }
 
     @Test(description = "Google Search Results Second Link Is Displayed", dataProvider = "keywords")
