@@ -10,7 +10,6 @@ import org.testng.asserts.SoftAssert;
 import static io.qameta.allure.Allure.step;
 
 @Feature("Google search engine")
-@Issue("GS-1")
 public class GoogleSearchEngineE2eTest extends BaseE2eTest {
 
     @Test(description = "Search input quote is displayed in title", dataProvider = "keywords")
@@ -48,7 +47,7 @@ public class GoogleSearchEngineE2eTest extends BaseE2eTest {
     }
 
     @Test(description = "Random test case", dataProvider = "keywords")
-    @Issue("abc-123")
+    @Issue("GS-1")
     @Story("Google search input")
     public void testGoogleSearchResultsSecondLinkIsNotDisplayed2(String keyword) {
         SoftAssert softAssert = new SoftAssert();
