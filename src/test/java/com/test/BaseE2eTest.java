@@ -28,7 +28,8 @@ import java.util.concurrent.TimeUnit;
 import static io.qameta.allure.Allure.step;
 
 @Listeners({
-        TestOrderRandomizer.class
+        TestOrderRandomizer.class,
+        AnnotationTransformerRetryListener.class
 })
 @Slf4j
 public class BaseE2eTest implements IHookable {
