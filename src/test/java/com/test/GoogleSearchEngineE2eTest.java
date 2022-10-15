@@ -64,9 +64,6 @@ public class GoogleSearchEngineE2eTest extends BaseE2eTest {
         softAssert.assertAll();
     }
 
-
-
-
     @DataProvider
     public Object[][] keywords() {
         return new Object[][]{
@@ -80,7 +77,6 @@ public class GoogleSearchEngineE2eTest extends BaseE2eTest {
                         "qa automation"
                 }
         };
-
     }
 
 }

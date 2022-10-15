@@ -30,8 +30,6 @@ import java.util.concurrent.TimeUnit;
 @Slf4j
 public class BaseE2eTest implements IHookable {
 
-    private static final ThreadLocal<WebDriver> WEB_DRIVER_THREAD_LOCAL = new ThreadLocal<>();
-    private static final ThreadLocal<WebDriverWait> WEB_DRIVER_WAIT_THREAD_LOCAL = new ThreadLocal<>();
     private static final ThreadLocal<GooglePage> TEST_PAGE_THREAD_LOCAL = new ThreadLocal<>();
 
     @BeforeMethod
@@ -66,11 +64,9 @@ public class BaseE2eTest implements IHookable {
             e.printStackTrace();
             throw new RuntimeException("setup error");
         }
-        remoteWebDriver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+        remoteWebDriver.manage().timeouts().implicitlyWait(Duration.ofSeconds(0));
         log.info("setting up things for thread: {}", Thread.currentThread().getName());
-        WEB_DRIVER_THREAD_LOCAL.set(remoteWebDriver);
-        WEB_DRIVER_WAIT_THREAD_LOCAL.set(new WebDriverWait(remoteWebDriver, Duration.ofSeconds(4)));
-        TEST_PAGE_THREAD_LOCAL.set(new GooglePage("en", getWebDriver(), getWebDriverWait(), targetUrl));
+        TEST_PAGE_THREAD_LOCAL.set(new GooglePage("en", remoteWebDriver, new WebDriverWait(remoteWebDriver, Duration.ofSeconds(4)), targetUrl));
     }
 
     @AfterMethod
@@ -81,14 +77,6 @@ public class BaseE2eTest implements IHookable {
 
     public GooglePage getTestPage() {
         return TEST_PAGE_THREAD_LOCAL.get();
-    }
-
-    private static WebDriver getWebDriver() {
-        return WEB_DRIVER_THREAD_LOCAL.get();
-    }
-
-    private static WebDriverWait getWebDriverWait() {
-        return WEB_DRIVER_WAIT_THREAD_LOCAL.get();
     }
 
     @Override
@@ -106,6 +94,6 @@ public class BaseE2eTest implements IHookable {
 
     @Attachment(value = "Failure in method {0}", type = "image/png")
     private byte[] takeScreenShot(String methodName) throws IOException {
-        return ((TakesScreenshot) getWebDriver()).getScreenshotAs(OutputType.BYTES);
+        return ((TakesScreenshot) getTestPage().getWebDriver()).getScreenshotAs(OutputType.BYTES);
     }
 }
