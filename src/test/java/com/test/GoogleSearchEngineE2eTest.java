@@ -50,6 +50,7 @@ public class GoogleSearchEngineE2eTest extends BaseE2eTest {
 
     @Test(description = "Random test case", dataProvider = "keywords")
     @AllureId("3")
+    @Issue("abc-123")
     @Story("Google search input")
     public void testGoogleSearchResultsSecondLinkIsNotDisplayed2(String keyword) {
         SoftAssert softAssert = new SoftAssert();
