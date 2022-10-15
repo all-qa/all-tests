@@ -1,6 +1,5 @@
 package com.test.pages;
 
-import io.qameta.allure.Step;
 import lombok.Getter;
 import lombok.NonNull;
 import lombok.extern.slf4j.Slf4j;
@@ -13,7 +12,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.util.List;
 
 @Slf4j
-public class GooglePage extends BasePageObject {
+public class GooglePage extends PageObject {
 
     @Getter
     private String url;
