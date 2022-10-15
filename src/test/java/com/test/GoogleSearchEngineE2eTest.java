@@ -16,17 +16,13 @@ public class GoogleSearchEngineE2eTest extends BaseE2eTest {
     @Story("Google search input")
     public void testGoogleSearchInputReturnsResult(String keyword) {
         SoftAssert softAssert = new SoftAssert();
-        step("Opening google page", () -> {
-                    GooglePage googlePage = getTestPage().openPage();
-                    step("Searching google using keyword hello world and prompting for results with RETURN key", () -> {
-                        GoogleSearchResultsPage googleSearchResultsPage = googlePage.googleSearch(keyword);
-                        step("Check page title contains search keyword", () -> {
-                            softAssert.assertTrue(googleSearchResultsPage.getPageTitle().contains(keyword));
-                        });
-                    });
+        step("Searching google using keyword hello world and prompting for results with RETURN key", () -> {
+            GoogleSearchResultsPage googleSearchResultsPage = getTestPage().googleSearch(keyword);
+            step("Check page title contains search keyword", () -> {
+                softAssert.assertTrue(googleSearchResultsPage.getPageTitle().contains(keyword));
             });
+        });
         softAssert.assertAll();
-        step("Closing google page", () -> getTestPage().closePage());
     }
 
     @Test(description = "Google Search Results Second Link Is Displayed", dataProvider = "keywords")
@@ -34,16 +30,12 @@ public class GoogleSearchEngineE2eTest extends BaseE2eTest {
     @Issue("GS-1")
     public void testGoogleSearchResultsSecondLinkIsNotDisplayed(String keyword) {
         SoftAssert softAssert = new SoftAssert();
-        step("Opening google page", () -> {
-            GooglePage googlePage = getTestPage().openPage();
-            step("Searching google using keyword hello world and prompting for results with RETURN key", () -> {
-                GoogleSearchResultsPage googleSearchResultsPage = googlePage.googleSearch(keyword);
-                step("Check second link in results links is not displayed", () -> {
-                    softAssert.assertFalse(googleSearchResultsPage.secondLink().isDisplayed());
-                });
+        step("Searching google using keyword hello world and prompting for results with RETURN key", () -> {
+            GoogleSearchResultsPage googleSearchResultsPage = getTestPage().googleSearch(keyword);
+            step("Check second link in results links is not displayed", () -> {
+                softAssert.assertFalse(googleSearchResultsPage.secondLink().isDisplayed());
             });
         });
-        step("Closing google page", () -> getTestPage().closePage());
         softAssert.assertAll();
     }
 

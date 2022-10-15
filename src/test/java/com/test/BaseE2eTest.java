@@ -25,6 +25,8 @@ import java.net.URL;
 import java.time.Duration;
 import java.util.concurrent.TimeUnit;
 
+import static io.qameta.allure.Allure.step;
+
 @Listeners({
         TestOrderRandomizer.class
 })
@@ -68,11 +70,13 @@ public class BaseE2eTest implements IHookable {
         remoteWebDriver.manage().timeouts().implicitlyWait(Duration.ofSeconds(0));
         log.info("setting up things for thread: {}", Thread.currentThread().getName());
         TEST_PAGE_THREAD_LOCAL.set(new GooglePage("en", remoteWebDriver, new WebDriverWait(remoteWebDriver, Duration.ofSeconds(4)), targetUrl));
+        getTestPage().openPage();
     }
 
     @AfterMethod
     public void tearDown() {
         log.info("tearing down things for thread: {}", Thread.currentThread().getName());
+        step("Closing google page", () -> getTestPage().closePage());
         TEST_PAGE_THREAD_LOCAL.remove();
     }
 
