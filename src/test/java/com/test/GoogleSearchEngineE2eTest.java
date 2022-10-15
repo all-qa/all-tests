@@ -20,7 +20,7 @@ public class GoogleSearchEngineE2eTest extends BaseE2eTest {
                     GooglePage googlePage = getTestPage().openPage();
                     step("Searching google using keyword hello world and prompting for results with RETURN key", () -> {
                         GoogleSearchResultsPage googleSearchResultsPage = googlePage.googleSearch(keyword);
-                        step("Check page title conains search keyword", () -> {
+                        step("Check page title contains search keyword", () -> {
                             softAssert.assertTrue(googleSearchResultsPage.getPageTitle().contains(keyword));
                         });
                     });
@@ -31,6 +31,7 @@ public class GoogleSearchEngineE2eTest extends BaseE2eTest {
 
     @Test(description = "Google Search Results Second Link Is Displayed", dataProvider = "keywords")
     @Story("Google search input")
+    @Issue("GS-1")
     public void testGoogleSearchResultsSecondLinkIsNotDisplayed(String keyword) {
         SoftAssert softAssert = new SoftAssert();
         step("Opening google page", () -> {
@@ -38,25 +39,7 @@ public class GoogleSearchEngineE2eTest extends BaseE2eTest {
             step("Searching google using keyword hello world and prompting for results with RETURN key", () -> {
                 GoogleSearchResultsPage googleSearchResultsPage = googlePage.googleSearch(keyword);
                 step("Check second link in results links is not displayed", () -> {
-                    softAssert.assertTrue(googleSearchResultsPage.secondLink().isDisplayed());
-                });
-            });
-        });
-        step("Closing google page", () -> getTestPage().closePage());
-        softAssert.assertAll();
-    }
-
-    @Test(description = "Random test case", dataProvider = "keywords")
-    @Issue("GS-1")
-    @Story("Google search input")
-    public void testGoogleSearchResultsSecondLinkIsNotDisplayed2(String keyword) {
-        SoftAssert softAssert = new SoftAssert();
-        step("Opening google page", () -> {
-            GooglePage googlePage = getTestPage().openPage();
-            step("Searching google using keyword hello world and prompting for results with RETURN key", () -> {
-                GoogleSearchResultsPage googleSearchResultsPage = googlePage.googleSearch(keyword);
-                step("Check second link in results links is not displayed", () -> {
-                    softAssert.assertTrue(googleSearchResultsPage.secondLink().isDisplayed());
+                    softAssert.assertFalse(googleSearchResultsPage.secondLink().isDisplayed());
                 });
             });
         });
