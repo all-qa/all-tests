@@ -47,7 +47,7 @@ def e2ePipelineStages() {
 
      stage("Running e2e tests") {
         withAllureUpload(serverId: 'allure-testops', projectId: '1', results: [[path: 'target/allure-results']], , tags: "${params.BROWSER}") {
-            sh "mvnd -Dmvnd.idleTimeout=0 clean verify -Dselenium.hub.url=http://selenium-router.selenium-grid.svc.cluster.local:4444 -Dselenium.browser=${params.BROWSER} -Dselenium.target.url=https://google.com"
+            sh "mvnd -Dmvnd.idleTimeout=10s clean verify -Dselenium.hub.url=http://selenium-router.selenium-grid.svc.cluster.local:4444 -Dselenium.browser=${params.BROWSER} -Dselenium.target.url=https://google.com"
         }
      }
 
