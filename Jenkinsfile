@@ -46,13 +46,17 @@ def e2ePipelineStages() {
          checkout scm
      }
 
-     stage("Running e2e tests") {
+     stage("Running e2e tests mvnd") {
         //withAllureUpload(serverId: 'allure-testops', projectId: '1', results: [[path: 'target/allure-results']], , tags: "${params.BROWSER}") {
         sh 'whoami && which mvnd'
         sh 'mvnd --status'
         sh "mvnd clean verify -Dselenium.hub.url=http://selenium-router.selenium-grid.svc.cluster.local:4444 -Dselenium.browser=${params.BROWSER} -Dselenium.target.url=https://google.com"
         sh 'mvnd --status'
         //}
+     }
+
+     stage("Running e2e tests mvn") {
+        sh "mvn clean verify -Dselenium.hub.url=http://selenium-router.selenium-grid.svc.cluster.local:4444 -Dselenium.browser=${params.BROWSER} -Dselenium.target.url=https://google.com"
      }
 
 }
