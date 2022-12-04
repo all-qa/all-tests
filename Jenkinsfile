@@ -14,6 +14,7 @@ pipeline {
 
     environment {
         MAVEN_OPTS = " -Xms512m -Xmx1024m"
+        PATH="$PATH:/usr/local/mvnd/bin/"
     }
 
     options {
