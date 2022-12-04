@@ -19,7 +19,7 @@ pipeline {
 
     options {
         disableConcurrentBuilds()
-        buildDiscarder(logRotator(numToKeepStr: '1', artifactNumToKeepStr: '1'))
+        buildDiscarder(logRotator(numToKeepStr: '10', artifactNumToKeepStr: '10'))
         timeout(time: 1, unit: 'HOURS')
         skipDefaultCheckout()
         ansiColor('xterm')
