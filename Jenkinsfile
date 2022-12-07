@@ -15,6 +15,7 @@ pipeline {
     environment {
         MAVEN_OPTS = " -Xms512m -Xmx1024m"
         PATH="$PATH:/usr/local/mvnd/bin/"
+        JAVA_HOME="/usr/lib/jvm/java-11-openjdk-amd64/"
     }
 
     options {
@@ -49,7 +50,7 @@ def e2ePipelineStages() {
      stage("Running e2e tests mvnd") {
         //withAllureUpload(serverId: 'allure-testops', projectId: '1', results: [[path: 'target/allure-results']], , tags: "${params.BROWSER}") {
         sh 'mvnd --status'
-        sh "mvnd -Dmvnd.daemonStorage=/usr/local/mvnd/cache clean verify -Dselenium.hub.url=http://selenium-router.selenium-grid.svc.cluster.local:4444 -Dselenium.browser=${params.BROWSER} -Dselenium.target.url=https://google.com"
+        sh "mvnd -V -Dmvnd.daemonStorage=/usr/local/mvnd/cache clean verify -Dselenium.hub.url=http://selenium-router.selenium-grid.svc.cluster.local:4444 -Dselenium.browser=${params.BROWSER} -Dselenium.target.url=https://google.com"
         sh 'mvnd --status'
         //}
      }
