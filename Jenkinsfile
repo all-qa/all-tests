@@ -54,8 +54,8 @@ def e2ePipelineStages() {
         //}
      }
 
-     stage("Running e2e tests mvn") {
-        sh "mvn clean verify -Dselenium.hub.url=http://selenium-router.selenium-grid.svc.cluster.local:4444 -Dselenium.browser=${params.BROWSER} -Dselenium.target.url=https://google.com"
-     }
+//      stage("Running e2e tests mvn") {
+//         sh "mvn clean verify -Dselenium.hub.url=http://selenium-router.selenium-grid.svc.cluster.local:4444 -Dselenium.browser=${params.BROWSER} -Dselenium.target.url=https://google.com"
+//      }
 
 }
